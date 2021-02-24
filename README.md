@@ -1,8 +1,6 @@
 # network-test
 Retrieve the request count.
 
-This is written by Ashly Suma Varghese
+Generate email based on health check
 
-Based on the technology and date entered the request count is pulled.
-
-This is the second change made on the file.
+Run linux commands via subprocess in python code
