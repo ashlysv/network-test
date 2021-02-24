@@ -19,13 +19,12 @@ fi
 
 technology_check(){
 
- if [ "$technology" = "NFAS" ] || [ "$technology" = "NHAS" ] || [ "$technology" = "NWAS" ] || [ "$technology" = "NCAS" ] || [ "$technology" = "NSAS" ] || [ "$technology" = "ICS" ] ;
- then
+ if [ "$technology" = "Fib" ] || [ "$technology" = "oP" ] then
  	 echo "Enter Date:[yyyy-mm-dd hh:mm:ss]"
 	 read DAT
          date_check
          echo "Count of $technology request on $DAT : "
-         grep 'checkservice: CMD:check service' ~/npa/var/log/npa.servicecheck.log*  |grep "$technology" |grep "$DAT" |wc -l
+         grep 'checkservice: CMD:check service' ~/var/log/servicecheck.log*  |grep "$technology" |grep "$DAT" |wc -l
 
 
  elif [ "$technology" = "ALL" ] ;
@@ -34,7 +33,7 @@ technology_check(){
         read DAT
         date_check
         echo "Count of All request on $DAT : "
-        grep 'checkservice: CMD:check service' ~/npa/var/log/npa.servicecheck.log* |grep "$DAT" |wc -l
+        grep 'checkservice: CMD:check service' ~/var/log/servicecheck.log* |grep "$DAT" |wc -l
 
  else
         echo " Please follow the format for technology"
@@ -49,10 +48,10 @@ save_file(){
    read filename
 
    if [ "$technology" = "ALL" ] ; then
-        grep 'checkservice: CMD:check service' ~/npa/var/log/npa.servicecheck.log* | grep "$DAT" >/tmp/$filename
+        grep 'checkservice: CMD:check service' ~/var/log/servicecheck.log* | grep "$DAT" >/tmp/$filename
    
    else
-        grep 'checkservice: CMD:check service' ~/npa/var/log/npa.servicecheck.log* | grep "$technolgy" | grep "$DAT" >/tmp/$filename
+        grep 'checkservice: CMD:check service' ~/var/log/servicecheck.log* | grep "$technolgy" | grep "$DAT" >/tmp/$filename
    
    fi
 
@@ -61,7 +60,7 @@ save_file(){
 }
 
 
-echo "Enter Technology: [NFAS,NCAS,NHAS,NSAS,NWAS,ICS,ALL]"
+echo "Enter Technology: "
 read technology
 technology=$(echo $technology | tr 'a-z' 'A-Z')
 
